@@ -1,0 +1,50 @@
+.btn_elem{
+    width: 284px;
+    border-radius: var(--radius-small, 6px);
+    padding: 16px 32px;
+    align-items: center;
+
+}
+
+.green{
+    border: none;
+    background: var(--green, #393);
+    color: var(--txt-white, #FFF);
+    text-align: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+}
+
+.gray{
+    border: none;
+    background: var(--black, #282828);
+    color: white;
+}
+
+.white{
+    border: none;
+    background: var(--black, #ffffff);
+    color: var(--txt-black, #282828);
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    width: 512px;
+    height: 58px;
+    margin-top: 25px;
+}
+
+.navigation{
+    border-radius: var(--radius-small, 6px);
+    border: 1px solid var(--grey-divider, #DDD);
+    width: 145px;
+    height: 34px;
+    color: var(--txt-grey, #8B8B8B);
+    text-align: center;
+    padding: 8px 16px;
+    font-family: 'Montserrat';
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 126%;
+}
+

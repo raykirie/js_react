@@ -1,0 +1,31 @@
+.inp_elem {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: var(--radius-small, 6px);
+    font-size: 20px;
+    color: var(--txt-dark, #ffffff); 
+    font-family: 'Montserrat';
+    outline: none; 
+    
+  }
+
+.i_form{
+    border: 1px solid var(--white, #ffffff);
+    border-radius: var(--radius-small, 6px);
+    margin-bottom: 16px;
+    background-color: #0B710B;
+    width: 512px;
+    height: 58px;
+}
+
+.inp_elem::placeholder {
+    color: var(--txt-white, #cdcaca);
+    font-family: 'Montserrat';
+    padding: 16px 32px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 130%;
+  }
+
