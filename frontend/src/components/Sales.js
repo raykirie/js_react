@@ -5,7 +5,8 @@ import Button from "../UI/Button/Button";
 import { Element } from 'react-scroll';
 import { fetchAllProducts } from "../asyncAction/productsList";
 import { Link, NavLink } from "react-router-dom";
-import { addProductAction } from "../store/productListReducer";
+import { addToBasketAction } from "../store/basketReducer";
+
 
 
 
@@ -26,10 +27,17 @@ function Sales() {
   const handleButtonClick = (event, product ) => {
     event.preventDefault(); 
     event.stopPropagation(); 
-   
-  
-    
+
+    const { id, title, discont_price, image } = product;
+  dispatch(addToBasketAction({
+    id,
+    title,
+    price: discont_price,
+    image,  
+  }));
   };
+
+  
 
   const handleNavLinkClick = (event, id) => {
     console.log(`NavLink clicked for product with id ${id}`);

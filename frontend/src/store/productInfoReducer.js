@@ -1,10 +1,10 @@
 
 const defaultState = {
-
+    items: [],
 }
 
-
 const PRODUCT_INFO = 'PRODUCT_INFO'
+
 
 export const productInfoReducer = (state = defaultState, action) => {
     switch(action.type){
@@ -16,3 +16,4 @@ export const productInfoReducer = (state = defaultState, action) => {
 }
 
 export const productInfoAction = (payload) => ({type: PRODUCT_INFO, payload })
+

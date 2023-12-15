@@ -4,6 +4,7 @@ import {thunk} from 'redux-thunk';
 import { productListReducer } from './productListReducer';
 import { productInfoReducer } from './productInfoReducer';
 import { clickerReducer } from './clickerReducer';
+import { basketReducer } from './basketReducer';
 
 
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   productList: productListReducer, 
   productInfo: productInfoReducer,
   clicker: clickerReducer,
+  basket: basketReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
