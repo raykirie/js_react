@@ -28,13 +28,13 @@ function Sales() {
     event.preventDefault(); 
     event.stopPropagation(); 
 
-    const { id, title, discont_price, image } = product;
-  dispatch(addToBasketAction({
-    id,
-    title,
-    price: discont_price,
-    image,  
-  }));
+    const { id, title, discont_price, price, image } = product;
+    dispatch(addToBasketAction({
+      id,
+      title,
+      price: discont_price,
+      image,
+    }));
   };
 
   

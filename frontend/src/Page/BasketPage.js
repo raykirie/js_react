@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 function Basket() {
   const { items } = useSelector((store) => store.basket);
+
+
 
   return (
     <div>
