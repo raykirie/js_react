@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { decrAction, incrAction } from "../store/clikerReducer";
 import { removeFromBasketAction } from "../store/basketReducer";
 
+
 function Basket() {
   const { items } = useSelector((store) => store.basket);
   const count = useSelector(store => store.clicker) 

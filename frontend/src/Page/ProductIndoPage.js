@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { fetchProdutInfo } from "../asyncAction/productInfo"
 import Button from "../UI/Button/Button"
 import { decrAction, incrAction } from "../store/clikerReducer"
+import { addToBasketAction } from "../store/basketReducer"
 
 
 function ProductIndoPage(){
@@ -17,6 +18,23 @@ function ProductIndoPage(){
     useEffect(() => {
         dispatch(fetchProdutInfo(id))
     }, [])
+
+
+    const handleButtonClick = (event, product) => {
+      event.preventDefault(); 
+      event.stopPropagation(); 
+      
+      const { id, title, discont_price, price, image } = product;
+      dispatch(addToBasketAction({
+        id,
+        title,
+        price,
+        discont_price,
+        image,
+      }));
+      
+    };
+
 
     return(
         <div className="product_info"> 
@@ -51,7 +69,7 @@ function ProductIndoPage(){
                     <p>{count}</p>
                     <button onClick={() => dispatch(incrAction(1))}>+</button>
                     <div className="counter_menu_btn">
-                    <Button theme='green' title='Add to cart'/>
+                    <Button  onClick={(event) => handleButtonClick(event, productInfo)} theme='green' title='Add to cart'/>
                     </div>
                 </div>
                 <div className="product_info_descriptoin">
