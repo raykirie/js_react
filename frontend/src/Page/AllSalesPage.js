@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI/Button/Button";
 import { fetchAllProducts } from "../asyncAction/productsList";
 import { Link, NavLink } from "react-router-dom";
+import { addToBasketAction } from "../store/basketReducer";
 
 
 function AllSalesPage() {
@@ -16,10 +17,18 @@ function AllSalesPage() {
   const discountedProducts = productList.filter((elem) => elem.discont_price !== null);
 
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = (event, product) => {
     event.preventDefault(); 
     event.stopPropagation(); 
     
+    const { id, title, discont_price, price, image } = product;
+    dispatch(addToBasketAction({
+      id,
+      title,
+      price,
+      discont_price,
+      image,
+    }));
     
   };
 
@@ -45,7 +54,7 @@ function AllSalesPage() {
               alt={elem.title}
             />
             <div className="overlay">
-              <Button onClick={handleButtonClick} theme="green" title="Add to cart" />
+              <Button onClick={(event) => handleButtonClick(event, elem)} theme="green" title="Add to cart" />
             </div>
             <p className="sales-card-title">{elem.title}</p>
             <div className="sales-card-price">

@@ -1,4 +1,3 @@
-
 const defaultState = {
     items: [],
 }
@@ -16,4 +15,3 @@ export const productInfoReducer = (state = defaultState, action) => {
 }
 
 export const productInfoAction = (payload) => ({type: PRODUCT_INFO, payload })
-

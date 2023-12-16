@@ -4,7 +4,6 @@ const defaultState = {
   };
   
 
-
   const ADD_TO_BASKET = 'ADD_TO_BASKET';
   
   export const basketReducer = (state = defaultState, action) => {

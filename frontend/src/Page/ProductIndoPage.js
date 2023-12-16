@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { fetchProdutInfo } from "../asyncAction/productInfo"
 import Button from "../UI/Button/Button"
-import { decrAction, incrAction } from "../store/clickerReducer"
+import { decrAction, incrAction } from "../store/clikerReducer"
+
 
 function ProductIndoPage(){
 

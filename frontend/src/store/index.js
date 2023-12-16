@@ -3,8 +3,8 @@ import { categoriesReducer } from './categoriesReducer';
 import {thunk} from 'redux-thunk'; 
 import { productListReducer } from './productListReducer';
 import { productInfoReducer } from './productInfoReducer';
-import { clickerReducer } from './clickerReducer';
 import { basketReducer } from './basketReducer';
+import { clickerReducer } from './clikerReducer';
 
 
 

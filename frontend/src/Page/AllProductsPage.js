@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI/Button/Button";
 import { fetchAllProducts } from "../asyncAction/productsList";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { addToBasketAction } from "../store/basketReducer";
 
 function AllProductsPage() {
   const { productList, filter } = useSelector((store) => store.productList);
@@ -13,10 +14,18 @@ function AllProductsPage() {
     dispatch(fetchAllProducts());
   }, []);
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = (event, product) => {
     event.preventDefault(); 
     event.stopPropagation(); 
-    
+
+    const { id, title, discont_price, price, image } = product;
+    dispatch(addToBasketAction({
+      id,
+      title,
+      price,
+      discont_price,
+      image,
+    }));
     
   };
 
@@ -39,7 +48,7 @@ function AllProductsPage() {
               <div className="image-container">
                 <img width={279} height={280} src={"http://localhost:3333/" + elem.image} alt={elem.title}/>
                 <div className="overlay">
-                  <Button onClick={handleButtonClick} theme="green" title="Add to card" />
+                  <Button onClick={(event) => handleButtonClick(event, elem)} theme="green" title="Add to card" />
                 </div>
                 <div className="product-title">
                 <p className="sales-card-title">

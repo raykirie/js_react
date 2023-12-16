@@ -32,7 +32,8 @@ function Sales() {
     dispatch(addToBasketAction({
       id,
       title,
-      price: discont_price,
+      price,
+      discont_price,
       image,
     }));
   };
