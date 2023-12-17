@@ -10,8 +10,6 @@ function Basket() {
   const dispatch = useDispatch()
 
 
-qwfqfqfqfqwfqwfqfwq
-
   return (
     <div className="shopping_cart">
       <h2>Shopping cart</h2>
