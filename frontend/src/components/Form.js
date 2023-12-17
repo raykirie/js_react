@@ -18,9 +18,11 @@ const handleButtonClick = () => {
         </div>
         <div className='form_right'>
         <div className='form_inp'>
+          <form>
           <Input  placeholder="Name" size={'i_form'} />          
           <Input  placeholder="Phone number" size={'i_form'} />
           <Input  placeholder="Email" size={'i_form'} />
+          </form>
           <div className='from_btn'>
           <Button 
           theme='white'

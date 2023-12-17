@@ -29,3 +29,17 @@
     line-height: 130%;
   }
 
+.i_basket{
+  border-radius: var(--radius-small, 6px);
+  border: 1px solid var(--grey-divider, #DDD);
+  background: var(--white, #FFF);
+  width: 484px;
+  height: 58px;
+  display: flex;
+  padding: 16px 32px;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+
+}
+

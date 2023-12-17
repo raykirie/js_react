@@ -2,6 +2,7 @@ import { ReactComponent as XxX } from "../image/x_basket.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { decrAction, incrAction } from "../store/clikerReducer";
 import { removeFromBasketAction } from "../store/basketReducer";
+import Input from "../UI/INput/Input";
 
 
 function Basket() {
@@ -13,7 +14,7 @@ function Basket() {
   return (
     <div className="shopping_cart">
       <h2>Shopping cart</h2>
-      <div>
+      <div className="shopping_cart_main">
         {items.map((item) => (
           <div className="shopping_cart_item" key={item.id}>
             <img width={190} height={170} src={"http://localhost:3333/"+item.image} />
@@ -50,6 +51,14 @@ function Basket() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="shopping_cart_form">
+        <h2>Order detalis</h2>
+        <form>
+          <Input size={'i_basket'}/>
+          <Input size={'i_basket'}/>
+          <Input size={'i_basket'}/>
+        </form>
       </div>
     </div>
   );
