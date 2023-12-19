@@ -53,6 +53,10 @@ function AllSalesPage() {
               src={"http://localhost:3333/" + elem.image}
               alt={elem.title}
             />
+            {elem.discont_price !== null && (
+                        <div className='discount_tag'>
+                            {Math.round((1 - elem.discont_price / elem.price) * 100)}%
+                        </div>)}
             <div className="overlay">
               <Button onClick={(event) => handleButtonClick(event, elem)} theme="green" title="Add to cart" />
             </div>

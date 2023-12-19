@@ -8,6 +8,7 @@ import Button from "../UI/Button/Button";
 
 
 
+
 function CategoryPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function CategoryPage() {
     console.log(`NavLink clicked for product with id ${id}`);
   };
 
+
   return (
     <div className="products_all">
       <p>Category {id}</p>
@@ -41,7 +43,10 @@ function CategoryPage() {
           <div key={elem.id} className="products-item_all">
             <div className="image-container">
               <img width={279} height={280} src={"http://localhost:3333/" + elem.image} alt={elem.title} />
-
+              {elem.discont_price !== null && (
+                        <div className='discount_tag'>
+                            {Math.round((1 - elem.discont_price / elem.price) * 100)}%
+                        </div>)}
               <div className="overlay">
                 <Button onClick={handleButtonClick} theme="green" title="Add to card" />
               </div>

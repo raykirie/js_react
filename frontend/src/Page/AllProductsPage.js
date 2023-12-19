@@ -4,7 +4,7 @@ import Button from "../UI/Button/Button";
 import { fetchAllProducts } from "../asyncAction/productsList";
 import { Link, useNavigate } from "react-router-dom";
 import { addToBasketAction } from "../store/basketReducer";
-import { filterBySaleAction } from "../store/productListReducer";
+import { filterByPriceAction, filterBySaleAction } from "../store/productListReducer";
 
 function AllProductsPage() {
   const productList = useSelector((store) => store.productList.productList);
@@ -42,13 +42,25 @@ function AllProductsPage() {
     dispatch(filterBySaleAction(e.target.checked));
   }
 
-  const filteredProductList = productList.filter((elem) => elem.isShow);
+  const filteredProductList = productList.filter((elem) => elem.isShowSale && elem.isShowPrice);
+
+  function formHandler(e){
+    let form_data = new FormData(e.target.parentElement)
+    let data = Object.fromEntries(form_data)
+    data.max = (data.max && +data.max >= +data.min) ? +data.max : Infinity
+    data.min = (data.min) ? +data.min : 0
+    dispatch(filterByPriceAction(data))
+  }
 
 
   return (
     <div className="products_all">
       <p>All products</p>
       <div className="filter_products">
+        <form className="form_filter" onChange={formHandler}>
+          <input style={{ marginRight: '20px' }}  placeholder="от" name="min"/>
+          <input placeholder="до" name="max"/>
+        </form>
         <label>
           Sale
           <input onClick={checkBoxHandler} type="checkbox" />
@@ -69,6 +81,11 @@ function AllProductsPage() {
                   src={"http://localhost:3333/" + elem.image}
                   alt={elem.title}
                 />
+                {elem.discont_price !== null && (
+                        <div className='discount_tag'>
+                            {Math.round((1 - elem.discont_price / elem.price) * 100)}%
+                        </div>)}
+
                 <div className="overlay">
                   <Button
                     onClick={(event) => handleButtonClick(event, elem)}
