@@ -22,7 +22,7 @@ export const productListReducer = (state = defaultState, action) => {
         case SALES_PRODUCTS:
             return {productList: action.payload}
         case PRODUCTS_BY_CATEGORY:
-            return {productList: action.payload.data}
+            return {category_name: action.payload.category.title, productList: action.payload.data}
         case FILTER_BY_SALE:
             return {productList: state.productList.map(elem => {
                 if (action.payload){

@@ -7,22 +7,16 @@ import { fetchAllProducts } from "../asyncAction/productsList";
 import { Link, NavLink } from "react-router-dom";
 import { addToBasketAction } from "../store/basketReducer";
 
-
-
-
 function Sales() {
   const dispatch = useDispatch();
   const { productList } = useSelector((store) => store.productList);
-
-
 
   useEffect(() => {
     dispatch(fetchAllProducts())
   }, [dispatch]);
 
   const discountedProducts = productList.filter((elem) => elem.discont_price !== null);
-  const sortedDiscountedProducts = discountedProducts.sort((a, b) => b.discont_price - a.discont_price).slice(0, 4);
-
+  const sortedDiscountedProducts = discountedProducts.sort((a, b) => b.discont_price - a.discont_price).slice(0, 4)
 
   const handleButtonClick = (event, product ) => {
     event.preventDefault(); 
@@ -38,12 +32,9 @@ function Sales() {
     }));
   };
 
-  
-
   const handleNavLinkClick = (event, id) => {
     console.log(`NavLink clicked for product with id ${id}`);
   };
-
 
   return (
     <Element name="salesSection" className="sales_main">

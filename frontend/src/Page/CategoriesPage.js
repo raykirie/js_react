@@ -12,7 +12,7 @@ import Button from "../UI/Button/Button";
 function CategoryPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const {productList} = useSelector((store) => store.productList);
+  const {category_name, productList} = useSelector((store) => store.productList);
 
   useEffect(() => {
     dispatch(fetchCategoryById(id))
@@ -32,7 +32,7 @@ function CategoryPage() {
 
   return (
     <div className="products_all">
-      <p>Category {id}</p>
+      <p>{category_name}</p>
       <div className="products-container_all">
         {productList.map((elem) => (
            <Link
