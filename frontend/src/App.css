@@ -563,7 +563,7 @@
     transition: background-color 0.3s ease;
   }
   
-  /* изменяем цвет кнопки при наведении */
+ 
   .image-container .overlay > button:hover {
     background-color: black;
   }
@@ -1020,4 +1020,8 @@
     font-style: normal;
     font-weight: 700;
     line-height: 110%;
+  }
+
+  .filter_products{
+    margin-bottom: 200px;
   }
