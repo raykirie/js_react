@@ -1023,7 +1023,7 @@
   }
 
   .filter_products{
-    margin-right: 420px;
+    margin-right: 290px;
     display: flex;
     margin-bottom: 150px;
   }
@@ -1041,4 +1041,8 @@
     top: 16px;
     border-radius: 6px;
     color: white;
+  }
+
+  .filter_default{
+    margin-left: 20px;
   }

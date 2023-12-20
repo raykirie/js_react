@@ -2,20 +2,20 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI/Button/Button";
 import { fetchAllProducts } from "../asyncAction/productsList";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { addToBasketAction } from "../store/basketReducer";
-import { filterByPriceAction, filterBySaleAction } from "../store/productListReducer";
+import { defaultAction, filterByPriceAction, filterBySaleAction, sortByNameAction, sortByPriceAction } from "../store/productListReducer";
 
 function AllProductsPage() {
   const productList = useSelector((store) => store.productList.productList);
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  
 
   console.log(productList);
 
   useEffect(() => {
     dispatch(fetchAllProducts());
-  }, []);
+  }, [dispatch]);
 
   const handleButtonClick = (event, product) => {
     event.preventDefault();
@@ -53,18 +53,36 @@ function AllProductsPage() {
   }
 
 
+  const sortHandler = (value) => {
+    switch (value) {
+      case 'name':
+        dispatch(sortByNameAction());
+        break;
+      case 'price':
+        dispatch(sortByPriceAction());
+        break;
+      default:
+        dispatch(defaultAction());
+    }
+  };
+
   return (
     <div className="products_all">
       <p>All products</p>
       <div className="filter_products">
         <form className="form_filter" onChange={formHandler}>
-          <input style={{ marginRight: '20px' }}  placeholder="от" name="min"/>
-          <input placeholder="до" name="max"/>
+          <input style={{ marginRight: '20px' }}  placeholder="from" name="min"/>
+          <input placeholder="to" name="max"/>
         </form>
         <label>
           Sale
           <input onClick={checkBoxHandler} type="checkbox" />
         </label>
+        <select className="filter_default" onChange={(e) => sortHandler(e.target.value)}>
+          <option value="">Default</option>
+          <option value="name">Sort by Name</option>
+          <option value="price">Sort by Price</option>
+        </select>
       </div>
       <div className="products-container_all">
         {filteredProductList.map((elem) => (

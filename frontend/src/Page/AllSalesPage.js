@@ -2,19 +2,22 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI/Button/Button";
 import { fetchAllProducts } from "../asyncAction/productsList";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { addToBasketAction } from "../store/basketReducer";
+import { defaultAction, filterByPriceAction, sortByNameAction, sortByPriceAction } from "../store/productListReducer";
 
 
 function AllSalesPage() {
-  const {productList} = useSelector((store) => store.productList);
+  const {productList} = useSelector((store) => store.productList) || { productList: [] };
   const dispatch = useDispatch();
 
  useEffect(() => {
     dispatch(fetchAllProducts())
- }, [])
+ }, [dispatch])
 
-  const discountedProducts = productList.filter((elem) => elem.discont_price !== null);
+ const discountedAndFiltersedProduct = productList.filter((elem) => 
+ elem.discont_price !== null && elem.isShowSale && elem.isShowPrice
+);
 
 
   const handleButtonClick = (event, product) => {
@@ -37,11 +40,44 @@ function AllSalesPage() {
   };
 
 
+  function formHandler(e){
+    let form_data = new FormData(e.target.parentElement)
+    let data = Object.fromEntries(form_data)
+    data.max = (data.max && +data.max >= +data.min) ? +data.max : Infinity
+    data.min = (data.min) ? +data.min : 0
+    dispatch(filterByPriceAction(data))
+  }
+
+
+  const sortHandler = (value) => {
+    switch (value) {
+      case 'name':
+        dispatch(sortByNameAction());
+        break;
+      case 'price':
+        dispatch(sortByPriceAction());
+        break;
+      default:
+        dispatch(defaultAction());
+    }
+  };
+
   return (
     <div className="sales-page-container">
       <p className="sales-page-title">All Sales</p>
+      <div className="filter_products">
+        <form className="form_filter" onChange={formHandler}>
+          <input style={{ marginRight: '20px' }}  placeholder="from" name="min"/>
+          <input placeholder="to" name="max"/>
+        </form>
+        <select className="filter_default" onChange={(e) => sortHandler(e.target.value)}>
+          <option value="">Default</option>
+          <option value="name">Sort by Name</option>
+          <option value="price">Sort by Price</option>
+        </select>
+      </div>
       <div className="sales-page-grid">
-        {discountedProducts.map((elem) => (
+        {discountedAndFiltersedProduct.map((elem) => (
           <NavLink
           key={elem.id}
           to={`/products/${elem.id}`}
