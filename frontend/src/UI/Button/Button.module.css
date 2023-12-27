@@ -47,4 +47,14 @@
     font-weight: 500;
     line-height: 126%;
 }
+.basket_green{
+    border: none;
+    background: var(--green, #393);
+    color: var(--txt-white, #FFF);
+    text-align: center;
+    width: 484px;
+    height: 58px;
+    font-family: 'Montserrat';
+    font-style: normal;
+}
 

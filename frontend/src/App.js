@@ -9,8 +9,8 @@ import AllProductsPage from './Page/AllProductsPage';
 import AllSalesPage from './Page/AllSalesPage';
 import CategoriesPage from './Page/CategoriesPage';
 import ProductInfoPage from './Page/ProductIndoPage';
-import EmptyCart from './Page/EmptyCart';
 import Basket from './Page/BasketPage';
+
 
 
 
@@ -29,7 +29,6 @@ function App() {
               <Route path='/allsales' element={<AllSalesPage/>}/>
               <Route path='/categories/:id/' element={<CategoriesPage/>}/>
               <Route path='/products/:id/' element={<ProductInfoPage/>}/>
-              <Route path='/emptycart' element={<EmptyCart/>}/>
               <Route path='/basket' element={<Basket/>}/>
               <Route path='*' element={<NotFoundPage/>}/>
             </Routes>
