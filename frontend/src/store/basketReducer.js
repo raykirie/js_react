@@ -4,6 +4,7 @@ const dataMap = JSON.parse(localStorage.getItem('items')) || []
 const ADD_NEW_ITEM = 'ADD_NEW_ITEM'
 const CHANGE_COUNT = 'CHANGE_COUNT'
 const REMOVE_ITEM = 'REMOVE_ITEM'
+const CLEAR_BASKET = 'CLEAR_BASKET';
 
 function changeCountItem(array, id, count) {
   return array.map((elem) => {
@@ -56,6 +57,11 @@ export const basketReducer = (state = { items: dataMap, count: 1 }, action)  => 
             ...state,
             items: state.items.filter((elem) => elem.id !== action.payload.id)
         };
+      case CLEAR_BASKET: 
+        return {
+          ...state,
+           items: [],
+      };
         default:
           return state;
     }
@@ -65,3 +71,4 @@ export const basketReducer = (state = { items: dataMap, count: 1 }, action)  => 
 export const addNEwItemAction = (payload) => ({type: ADD_NEW_ITEM, payload}) 
 export const changeCountAction = (payload) => ({type: CHANGE_COUNT, payload}) 
 export const removeItemAction = (payload) => ({ type: REMOVE_ITEM, payload })
+export const clearBasketAction = () => ({ type: CLEAR_BASKET })

@@ -6,7 +6,7 @@ import { Link} from "react-router-dom";
 import { defaultAction, filterByPriceAction, filterBySaleAction, sortByNameAction, sortByPriceAction } from "../store/productListReducer";
 import { addNEwItemAction } from "../store/basketReducer";
 
-function AllProductsPage() {
+function AllProductsPage(props) {
   const {categories_name, productList} = useSelector((store) => store.productList);
   const dispatch = useDispatch();
   
