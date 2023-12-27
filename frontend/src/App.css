@@ -35,6 +35,29 @@
     text-decoration: none;
 }
 
+.basket{
+  position: relative;
+}
+
+.i_basket{
+  position: relative;
+}
+
+.number_itm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #339933;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .footer {
     margin-left: 280px;
     margin-right: 280px;
@@ -1046,3 +1069,5 @@
   .filter_default{
     margin-left: 20px;
   }
+
+  

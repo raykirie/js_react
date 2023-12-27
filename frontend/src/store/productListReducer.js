@@ -16,15 +16,23 @@ const DEFAULT = 'DEFAULT'
 export const productListReducer = (state = defaultState, action) => {
     switch(action.type){
         case ALL_PRODUCTS:
-            return {productList: action.payload.map(elem => {
+            return {categories_name: 'All products', productList: action.payload.map(elem => {
                 elem.isShowSale = true
                 elem.isShowPrice = true
                 return elem
             })}
         case SALES_PRODUCTS:
-            return {productList: action.payload}
+            return {categories_name: 'All sales', productList: action.payload.map(elem => {
+                elem.isShowSale = true
+                elem.isShowPrice = true
+                return elem
+            })}
         case PRODUCTS_BY_CATEGORY:
-            return {category_name: action.payload.category.title, productList: action.payload.data}
+            return {category_name: action.payload.category.title, productList: action.payload.data.map(elem => {
+                elem.isShowSale = true
+                elem.isShowPrice = true
+                return elem
+            })}
         case FILTER_BY_SALE:
             return {productList: state.productList.map(elem => {
                 if (action.payload){

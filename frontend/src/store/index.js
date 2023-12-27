@@ -1,11 +1,9 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { categoriesReducer } from './categoriesReducer';
-import {thunk} from 'redux-thunk'; 
+import { thunk } from 'redux-thunk'; 
 import { productListReducer } from './productListReducer';
 import { productInfoReducer } from './productInfoReducer';
 import { basketReducer } from './basketReducer';
-import { clickerReducer } from './clikerReducer';
-
 
 
 
@@ -20,7 +18,6 @@ const rootReducer = combineReducers({
   categories: categoriesReducer,
   productList: productListReducer, 
   productInfo: productInfoReducer,
-  clicker: clickerReducer,
   basket: basketReducer,
 });
 

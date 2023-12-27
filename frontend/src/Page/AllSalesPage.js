@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI/Button/Button";
 import { fetchAllProducts } from "../asyncAction/productsList";
 import { NavLink } from "react-router-dom";
-import { addToBasketAction } from "../store/basketReducer";
 import { defaultAction, filterByPriceAction, sortByNameAction, sortByPriceAction } from "../store/productListReducer";
+import { addNEwItemAction } from "../store/basketReducer";
 
 
 function AllSalesPage() {
-  const {productList} = useSelector((store) => store.productList) || { productList: [] };
+  const {categories_name, productList} = useSelector((store) => store.productList) || { productList: [] };
   const dispatch = useDispatch();
 
  useEffect(() => {
@@ -20,20 +20,11 @@ function AllSalesPage() {
 );
 
 
-  const handleButtonClick = (event, product) => {
-    event.preventDefault(); 
-    event.stopPropagation(); 
-    
-    const { id, title, discont_price, price, image } = product;
-    dispatch(addToBasketAction({
-      id,
-      title,
-      price,
-      discont_price,
-      image,
-    }));
-    
-  };
+const handleButtonClick = (event, elem) => {
+  event.preventDefault();
+  event.stopPropagation();
+  dispatch(addNEwItemAction({...elem, count: 1 }));
+}
 
   const handleNavLinkClick = (event, id) => {
     console.log(`NavLink clicked for product with id ${id}`);
@@ -64,7 +55,7 @@ function AllSalesPage() {
 
   return (
     <div className="sales-page-container">
-      <p className="sales-page-title">All Sales</p>
+      <p className="sales-page-title">{categories_name}</p>
       <div className="filter_products">
         <form className="form_filter" onChange={formHandler}>
           <input style={{ marginRight: '20px' }}  placeholder="from" name="min"/>

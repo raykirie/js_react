@@ -3,35 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../UI/Button/Button";
 import { fetchAllProducts } from "../asyncAction/productsList";
 import { Link} from "react-router-dom";
-import { addToBasketAction } from "../store/basketReducer";
 import { defaultAction, filterByPriceAction, filterBySaleAction, sortByNameAction, sortByPriceAction } from "../store/productListReducer";
+import { addNEwItemAction } from "../store/basketReducer";
 
 function AllProductsPage() {
-  const productList = useSelector((store) => store.productList.productList);
+  const {categories_name, productList} = useSelector((store) => store.productList);
   const dispatch = useDispatch();
   
 
-  console.log(productList);
 
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
 
-  const handleButtonClick = (event, product) => {
+  const handleButtonClick = (event, elem) => {
     event.preventDefault();
     event.stopPropagation();
 
-    const { id, title, discont_price, price, image } = product;
-    dispatch(
-      addToBasketAction({
-        id,
-        title,
-        price,
-        discont_price,
-        image,
-      })
-    );
-  };
+    dispatch(addNEwItemAction({...elem, count: 1 }));
+    
+  }
 
   const handleNavLinkClick = (event, id) => {
     console.log(`NavLink clicked for product with id ${id}`);
@@ -41,9 +32,9 @@ function AllProductsPage() {
     console.log(e.target.checked);
     dispatch(filterBySaleAction(e.target.checked));
   }
-
+  console.log(productList)
   const filteredProductList = productList.filter((elem) => elem.isShowSale && elem.isShowPrice);
-
+  
   function formHandler(e){
     let form_data = new FormData(e.target.parentElement)
     let data = Object.fromEntries(form_data)
@@ -68,7 +59,7 @@ function AllProductsPage() {
 
   return (
     <div className="products_all">
-      <p>All products</p>
+      <p>{categories_name}</p>
       <div className="filter_products">
         <form className="form_filter" onChange={formHandler}>
           <input style={{ marginRight: '20px' }}  placeholder="from" name="min"/>
