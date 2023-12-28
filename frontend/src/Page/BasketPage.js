@@ -41,12 +41,7 @@ function Basket() {
 
   return (
     <div className="shopping_cart_">
-      {items.length === 0 ? (
-        <EmptyCart />
-      ) : (
-        <>
-          <div className="head_basket">
-            <div className="head_basket_h">
+       <div className="head_basket_h">
               <h2>Shopping cart</h2>
             </div>
             <div className="head_basket_btn">
@@ -54,6 +49,11 @@ function Basket() {
                 <Button theme='navigation' title='Back to the store'/>
               </Link>
             </div>
+      {items.length === 0 ? (
+        <EmptyCart />
+      ) : (
+        <>
+          <div className="head_basket">
           </div>
           <div className="shopping_cart">
             <div className="shopping_cart_main">
